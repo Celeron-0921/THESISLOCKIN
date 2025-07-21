@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALUMNI LIST | TUP - Cavite</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500;700&family=Albert+Sans:wght@400;500;700&family=Sanchez&display=swap" rel="stylesheet" />
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <!-- Font Awesome for Social Media Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+
+  <link rel="stylesheet" href="alumni-Database.css" />
+</head>
+<body>
+  <div class="alumnidatabasepage">
+    <img class="Navbar" src="Navbar.png" />
+    <div class="Line1"></div>
+    <div class="label1">TECHNOLOGICAL UNIVERSITY OF THE PHILIPPINES – CAVITE</div>
+    
+    <a href="admin-homepage.html"><img class="Logo" src="Logo.png" alt="University Logo" /></a>
+    <button class="back-button" onclick="location.href='admin-homepage.html'"><span class="underline-slide">BACK</span></button>
+    
+    <div class="a-l-u-m-n-i slide-in">
+      <span class="a-l-u-m-n-i-span">A</span>
+      <span class="a-l-u-m-n-i-span2">l u m n i</span>
+      <span class="d-a-t-a-b-a-s-e-span">D</span>
+      <span class="d-a-t-a-b-a-s-e-span2">A T A B A S E</span>
+    </div>
+
+    <!-- <div id="loader-wrapper">
+      <div class="loader-content">
+          <span class="loading-span">T</span>
+          <span class="loading-span2">ECHNOLOGICAL</span>
+          <span class="loading-span">U</span>
+          <span class="loading-span2">NIVERSITY OF THE</span>
+          <span class="loading-span">P</span>
+          <span class="loading-span2">HILIPPINES - </span>
+          <span class="loading-span">C</span>
+          <span class="loading-span2">AVITE</span>
+
+        <div class="progress-container">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="percentage" id="percentage">0%</div>
+        <div class="footer-text">LOADING PLEASE WAIT</div>
+      </div>
+    </div> -->
+
+    <button id="openModal">➕ Add Alumni</button>
+    <button id="printTableBtn">🖨️ Print Table</button>
+    <input type="text" id="searchInput" placeholder="Search..." />
+
+    <div id="excelDropZone" class="excel-drop-zone">
+      <p><strong style="color: #ffffff;">Drop your Excel file here</strong></p>
+    </div>
+
+    <select id="pageSelect"></select>
+
+    <table id="alumniTable" border="0" cellspacing="0" cellpadding="0">
+      <thead>
+        <tr>
+          <th>FIRST NAME</th><th>LAST NAME</th><th>INITIAL</th><th>SUFFIX</th>
+          <th>DATE OF BIRTH</th><th>GENDER</th>
+          <th>PHONE No</th><th>MAJOR</th><th>YEAR STARTED</th><th>GRADUATED</th>
+          <th>STUDENT No.</th>
+        </tr>
+      </thead>
+        <tbody id="alumniTbody"></tbody>
+    </table>
+
+    <div id="modal" class="modal-overlay">
+      <div class="modal-content">
+        <h2>Add Alumni Information</h2>
+        <form id="alumniForm">
+            <input id="firstName" placeholder="First Name" required />
+            <input id="lastName" placeholder="Last Name" required />
+            <input id="initial" placeholder="Initial" />
+            <input id="suffix" placeholder="Suffix" />
+            <input id="dateBirth" type="date" placeholder="Date of Birth" required />
+            <input id="gender" placeholder="Gender" />
+            <input id="phoneNo" placeholder="Phone No" />
+            <input id="major" placeholder="Major" required />
+            <input id="yearStarted" placeholder="Year Started" required />
+            <input id="graduated" placeholder="Graduated" required />
+            <input id="studentNo" placeholder="Student No." />
+          <button type="submit" class="submit-btn">Submit</button>
+          <button type="button" onclick="closeModal()" class="cancel-btn">Cancel</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+    
+<script>
+  const modal       = document.getElementById('modal');
+  const tbody       = document.querySelector('#alumniTable tbody');
+  const pageSelect  = document.getElementById('pageSelect');
+  const printBtn    = document.getElementById('printTableBtn');
+  const openBtn     = document.getElementById('openModal');
+  const searchInput = document.getElementById('searchInput');
+  
+  const ROWS_PER_PAGE = 100;
+  let currentPage = 1, LIMIT = 100, totalPages = 1;
+
+  // Modal controls
+  openBtn.onclick = () => modal.style.display = 'block';
+  function closeModal() {
+    modal.style.display = 'none';
+    modal.querySelectorAll('input').forEach(i => i.value = '');
+  }
+
+  // Form submission
+  document.getElementById('alumniForm').onsubmit = async e => {
+    e.preventDefault();
+    const ids = ['firstName', 'lastName', 'initial', 'suffix', 'dateBirth', 'gender', 'phoneNo', 'major', 'yearStarted', 'graduated', 'studentNo'];
+    const payload = {};
+
+    ids.forEach(id => {
+      let val = document.getElementById(id).value.trim();
+      if (id === 'dateBirth' && val) {
+        const d = new Date(val);
+        val = isNaN(d) ? val : d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+      }
+      payload[id] = val;
+    });
+
+    try {
+      const res = await fetch('/api/alumni', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (res.ok) {
+        showToast('✅ Saved successfully!', 'success');
+        e.target.reset();
+        closeModal();
+        loadPage(1, searchInput.value.trim());
+      } else {
+        showToast('❌ Error saving data', 'error');
+      }
+    } catch (err) {
+      showToast('❌ Network error, please try again.', 'error');
+    }
+  };
+
+  function showToast(message, type = 'success') {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.className = `toast show ${type}`;
+    setTimeout(() => {
+      toast.className = 'toast';
+    }, 3000);
+  }
+
+
+
+  printBtn.onclick = () => window.print();
+  pageSelect.onchange = () => loadPage(+pageSelect.value, searchInput.value.trim());
+  searchInput.oninput = () => loadPage(1, searchInput.value.trim());
+
+  // Load and render a page
+  async function loadPage(page = 1, search = '') {
+    currentPage = page;
+    const url = `/api/alumni?page=${page}&limit=${ROWS_PER_PAGE}&search=${encodeURIComponent(search)}`;
+
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(await res.text());
+      
+      const { rows, total, totalPages: tp } = await res.json();
+      totalPages = tp;
+
+      // Render table rows (latest first)
+      tbody.innerHTML = '';
+      rows.reverse().forEach(r => { // 👈 reverse the order
+        const tr = document.createElement('tr');
+        ['firstName','lastName','initial','suffix','dateBirth','gender','phoneNo','major','yearStarted','graduated','studentNo']
+          .forEach(k => {
+            const td = document.createElement('td');
+            td.textContent = r[k] || '';
+            tr.appendChild(td);
+          });
+        tbody.prepend(tr); // 👈 still prepend to make sure it's top
+      });
+
+      // Build pagination
+      pageSelect.innerHTML = '';
+      for (let i = 1; i <= totalPages; i++) {
+        const opt = document.createElement('option');
+        opt.value = i;
+        opt.textContent = `Page ${i}`;
+        if (i === currentPage) opt.selected = true;
+        pageSelect.appendChild(opt);
+      }
+    } catch (err) {
+      console.error('Error loading page:', err);
+      alert('Failed to load data.');
+    }
+  }
+
+  // Initial load
+  window.addEventListener('DOMContentLoaded', () => loadPage());
+
+  // Excel drag-drop handler
+  const dz = document.getElementById('excelDropZone');
+  ['dragover','dragleave'].forEach(ev =>
+    dz.addEventListener(ev, e => {
+      e.preventDefault();
+      dz.style.background = ev === 'dragover' ? '#ccc' : '';
+    })
+  );
+  dz.addEventListener('drop', async e => {
+    e.preventDefault();
+    dz.style.background = '';
+    const file = e.dataTransfer.files[0];
+    if (!file?.name.match(/\.(xlsx|xls)$/i)) return alert('Not an Excel file');
+
+    const form = new FormData();
+    form.append('file', file);
+
+    try {
+      const res = await fetch('/api/alumni/upload-excel', { method: 'POST', body: form });
+      const j = await res.json();
+      showToast(`✅ Inserted ${j.inserted} rows!`, 'success');
+      loadPage(1, searchInput.value.trim());
+    } catch (err) {
+      showToast('❌ Upload error: ' + err.message, 'error');
+    }
+  });
+
+  // Hide loader and initialize
+  document.addEventListener('DOMContentLoaded', () => {
+    let pct = 80;
+    const loader = document.getElementById('loader-wrapper'),
+          bar = document.getElementById('progress-bar'),
+          pctEl = document.getElementById('percentage');
+
+    const iv = setInterval(() => {
+      if (pct < 100) {
+        pct++;
+        bar.style.width = pct + '%';
+        pctEl.textContent = pct + '%';
+      } else {
+        clearInterval(iv);
+        loader.style.display = 'none';
+      }
+    }, 30);
+  });
+    const role = sessionStorage.getItem('userRole');
+  if (role !== 'admin') {
+    window.location.href = 'homepage.html';
+  }
+</script>
+</body>
+</html>

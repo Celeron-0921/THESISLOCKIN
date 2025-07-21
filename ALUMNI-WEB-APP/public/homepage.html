@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HOME | TUP - Cavite</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500;700&family=Albert+Sans:wght@400;500;700&family=Sanchez&display=swap" rel="stylesheet" />
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <!-- Font Awesome for Social Media Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="homepage.css" />
+</head>
+<body>
+  <div class="homepage">
+    <img class="Navbar" src="Navbar.png" />
+    <div class="Line1"></div>
+    <div class="Line2"></div>
+
+
+    <!-- Overlay -->
+    <div class="toast-overlay" id="warnOverlay"></div>
+
+    <!-- Warning Popup -->
+    <div class="career-warning" id="warnToast1">
+      <div class="toast-header warn">
+        <span class="toast-icon">⚠️</span>
+        <span class="toast-title">Warning: Registration or Sign-In Required!!</span>
+      </div>
+      <div class="toast-content">
+        <ul>
+          <li>To access the Career section, you must first complete the registration or sign-in process.</li>
+          <li>Please ensure you are logged in to your TUP‑Cavite Alumni Account before proceeding.</li>
+          <li>If you haven't registered yet, please do so to gain access to exclusive opportunities available for alumni.</li>
+        </ul>
+      </div>
+      <button class="toast-button" id="warnDismiss1">UNDERSTOOD</button>
+    </div>
+
+    <div class="career-button slide-in">
+      <div class="content"><div class="state-layer"><div class="hover-underline1">CAREER</div></div></div>
+    </div>
+    
+    <div class="event-button slide-in" onclick="window.location.href='event-page.html'">
+      <div class="content"><div class="state-layer"><div class="hover-underline1">EVENTS</div></div></div>
+    </div>
+
+  <div class="gallery-button slide-in" onclick="window.location.href='gallery-user.html?from=homepage.html'">
+    <div class="content">
+      <div class="state-layer">
+        <div class="hover-underline1">GALLERY</div>
+      </div>
+    </div>
+  </div>
+
+    <div class="id-warning" id="warnToast2">
+      <div class="toast-header warn">
+        <span class="toast-icon">⚠️</span>
+        <span class="toast-title">Warning: Registration or Sign-In Required!!</span>
+      </div>
+      <div class="toast-content">
+        <ul>
+          <li>To access the ID Request Form, you must first complete the registration or sign-in process.</li>
+          <li>Please ensure you are logged in to your TUP‑Cavite Alumni Account before proceeding.</li>
+          <li>If you haven't registered yet, please do so to gain access to the ID Request Form</li>
+        </ul>
+      </div>
+      <button class="toast-button" id="warnDismiss2">UNDERSTOOD</button>
+    </div>
+    <div class="id-button slide-in">
+      <div class="content"><div class="state-layer"><div class="hover-underline1">ID REQUEST</div></div></div>
+    </div>
+
+    <div id="loader-wrapper">
+      <div class="loader-content">
+          <span class="loading-span">T</span>
+          <span class="loading-span2">ECHNOLOGICAL</span>
+          <span class="loading-span">U</span>
+          <span class="loading-span2">NIVERSITY OF THE</span>
+          <span class="loading-span">P</span>
+          <span class="loading-span2">HILIPPINES - </span>
+          <span class="loading-span">C</span>
+          <span class="loading-span2">AVITE</span>
+
+        <div class="progress-container">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="percentage" id="percentage">0%</div>
+        <div class="footer-text">LOADING PLEASE WAIT</div>
+      </div>
+    </div>
+
+
+    <a href="homepage.html">
+      <img class="Logo" src="Logo.png" alt="University Logo" />
+    </a>
+
+    <div class="a-l-u-m-n-i slide-in">
+      <span class="a-l-u-m-n-i-span">A</span>
+      <span class="a-l-u-m-n-i-span2">l u m n i</span>
+    </div>
+
+    <div class="technological-university-of-the-philippines-cavite">
+      TECHNOLOGICAL UNIVERSITY OF THE PHILIPPINES – CAVITE
+    </div>
+
+    <!-- LOGIN BUTTON -->
+    <button class="login-button slide-in hover-underline3" id="open-login-modal">LOG IN</button>
+
+    <!-- LOG IN MODAL -->
+    <div id="login-modal" class="login-modal" style="display: none;">
+      <div class="login-modal-content">
+        <!-- Navbar and Logo -->
+        <div class="navbar"></div>
+        <img class="Logo2" src="Logo2.png" alt="TUPC Logo" />
+
+        <!-- LOGIN TITLE -->
+        <div class="login-selection">
+          <span class="login-selection-span">L</span>
+          <span class="login-selection-span2">OG-IN</span>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <form id="login-form">
+          <input
+            type="text"
+            name="username"
+            id="login-username"
+            class="login-input1"
+            placeholder="Enter Username"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            id="login-password"
+            class="login-input2"
+            placeholder="Enter Password"
+            required
+          />
+          <button type="submit" class="login-submit">Login</button>
+          <div id="loginError" style="color: red; margin-top: 10px;"></div>
+        </form>
+
+        <!-- FORGOT PASSWORD LINK -->
+        <a href="#" id="openForgotModal" class="forgot-password">Forgot Password?</a>
+
+        <div id="forgot-modal" style="display: none;">
+          <div class="modal-content">
+            <span class="close" id="closeForgotModal">&times;</span>
+
+            <h3>Forgot Password</h3>
+
+            <!-- Step 1: Enter Username -->
+            <input type="text" id="forgot-username" placeholder="Enter Username">
+            <button id="findEmailBtn">Find Email</button>
+
+            <!-- Step 2: Display Found Email & Send OTP -->
+            <div id="emailDisplay" style="display:none; margin-top:10px;">
+              <p id="emailFound"></p>
+              <button id="sendOtpBtn">Send OTP</button>
+            </div>
+
+            <!-- Step 3: Enter OTP -->
+            <div id="otpSection" style="display:none; margin-top:10px;">
+              <input type="text" id="otpInput" placeholder="Enter OTP">
+              <button id="verifyOtpBtn">Verify OTP</button>
+            </div>
+
+            <!-- Step 4: Reset Password -->
+            <div id="resetPasswordSection" style="display:none; margin-top:10px;">
+              <input type="password" id="newPassword" placeholder="Enter New Password">
+              <button id="resetPasswordBtn">Reset Password</button>
+            </div>
+
+            <div id="forgot-error" style="color:red;"></div>
+            <div id="forgot-success" style="color:green;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="toastNotification" class="toast">❌ Invalid credentials</div>
+
+
+    <!-- Facebook Page Plugin -->
+    <div class="fb-wrapper">
+      <iframe 
+        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FTUPCAA&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true"
+        width="340" 
+        height="500" 
+        style="border:none; overflow:hidden;" 
+        scrolling="no" 
+        frameborder="0" 
+        allowfullscreen="true" 
+        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+      </iframe>
+    </div>
+
+    <!-- TUPCAVITE Page -->
+    <div class="fb-wrapper2">
+      <iframe 
+        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ftupcavite.edu.ph&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true"
+        width="340" 
+        height="500" 
+        style="border:none; overflow:hidden;" 
+        scrolling="no" 
+        frameborder="0" 
+        allowfullscreen="true" 
+        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+      </iframe>
+    </div>
+
+    <div class="announcement-box">
+      <h3>ID Announcements</h3>
+      <div class="announcement-list" id="idAnnouncementList">
+        Loading...
+      </div>
+    </div>
+
+    <div class="announcement-box2">
+      <h3>Events Announcements</h3>
+      <div class="announcement-list" id="eventList">
+        Loading...
+      </div>
+    </div>
+
+    <div class="career-box">
+      <h3>Career Opportunities</h3>
+      <div class="career-list" id="careerList">
+        Loading...
+      </div>
+    </div>
+
+    <!-- Slideshow Section -->
+    <div class="slideshow-container zoom-in">
+      <img class="slideshow-image" src="Grad1.png" alt="Grad 1" />
+      <img class="slideshow-image" src="Grad2.png" alt="Grad 2" />
+      <img class="slideshow-image" src="Grad3.png" alt="Grad 3" />
+      <img class="slideshow-image" src="Grad4.png" alt="Grad 4" />
+      <img class="slideshow-image" src="Grad5.png" alt="Grad 5" />
+      <img class="slideshow-image" src="Grad6.png" alt="Grad 6" />
+      <img class="slideshow-image" src="Grad7.png" alt="Grad 7" />
+      <img class="slideshow-image" src="Grad8.png" alt="Grad 8" />
+    </div>
+
+    <div class="commencement-description zoom-in">
+      <h2 class="school-name">Technological University of the Philippines - Cavite</h2>
+      <h3 class="event-title">40th <span>COMMENCEMENT EXERCISE</span></h3>
+      <p class="description">
+        Here are some snaps from the 40th Commencement Exercise at the Philippine International Convention Center on July 31, 2024.
+        See the magical moments of every TUPCians who reached the end of their college journey.
+        <br><br>
+        <strong>Photos by:</strong> Photo X Media<br>
+        <strong>Words by:</strong> Karen Pet Pabrowada
+      </p>
+    </div>
+  </div>
+
+  <!-- Visitor Counter -->
+  <div class="visitor-counter">No. OF SITE VISITOR: <span id="visitor-count">Loading...</span>
+  </div>
+
+    <!-- Contact Section -->
+    <div class="contact-section">
+      </a>
+    </div>
+    
+      <!-- Registration Button -->
+    <div class="registration-button slide-in">
+      <div class="content"><div class="state-layer">
+        <div class="hover-underline2">REGISTRATION</div></div></div>
+    </div>
+
+    <!-- Registration Modal -->
+<div id="registration-modal" class="registration-modal" style="display: none;">
+  <div class="registration-choices">
+    <div class="navbar"></div>
+    <img class="Logo2" src="Logo2.png" alt="TUPC Logo" />
+    <div class="registration-selection">
+      <span class="registration-selection-span">R</span>
+      <span class="registration-selection-span2">EGISTRATION</span>
+      <span class="registration-selection-span">S</span>
+      <span class="registration-selection-span2">ELECTION</span>
+    </div>
+    <div class="Line1-1"></div>
+
+    <div class="registration-selection2">
+      <a href="alumni-registration.html" class="select">
+        <div class="value">ALUMNI REGISTRATION</div>
+      </a>
+
+      <div class="select" id="openEmployerModal">
+        <div class="value">EMPLOYER REGISTRATION</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  Employer Registration Modal -->
+<div id="employerModal" class="employer-modal">
+  <div class="modal-content">
+    <div class="navbar"></div>
+    <div class="modal-header">
+      <img src="Logo2.png" alt="Logo">
+      <h3>Employer Registration</h3>
+      <span class="close-btn" id="closeEmployerModal">&times;</span>
+    </div>
+
+    <form id="employerRegForm">
+      <input type="text" id="employerName" placeholder="Employer Name">
+      <input type="text" id="businessName" placeholder="Business Name">
+      <input type="text" id="businessAddress" placeholder="Business Address">
+      <input type="tel" id="landlineNo" placeholder="Landline Number">
+      <input type="tel" id="mobileNo" placeholder="Mobile Number">
+      <input type="email" id="companyEmail" placeholder="Company Email Address">
+      <input type="url" id="companyWebsite" placeholder="Company Website">
+      <input type="text" id="preferredUserId" placeholder="Preferred User ID">
+      <input type="password" id="preferredPassword" placeholder="Preferred User Password">
+      <button type="button" id="employerSubmitBtn">Submit Registration</button>
+    </form>
+  </div>
+</div>
+
+<div id="employer-toast" class="employer-toast">
+  <div id="employer-toast-msg"></div>
+</div>
+
+<div id="login-toast" class="toast">
+  <div id="login-toast-message"></div>
+</div>
+
+  <!-- External JavaScript -->
+  <script src="Homeslideshow.js"></script>
+  <script src="jobs-response.js"></script>
+
+  <!-- Modal Script -->
+  <script>
+      const modal = document.getElementById("registration-modal");
+      const regButton = document.querySelector(".registration-button");
+
+      // Open the modal
+      regButton.addEventListener("click", () => {
+        modal.style.display = "flex";
+      });
+
+      // Close modal if clicking outside of the modal content
+      window.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.style.display = "none";
+        }
+      });
+
+      document.querySelector('.career-button').addEventListener('click', (e) => {
+        e.preventDefault();
+        // Here, check if user is signed-in; for demo, always show:
+        document.getElementById('warnOverlay').classList.add('show');
+        document.getElementById('warnToast1').classList.add('show');
+      });
+
+      // Dismiss the popup
+      document.getElementById('warnDismiss1').addEventListener('click', () => {
+        document.getElementById('warnOverlay').classList.remove('show');
+        document.getElementById('warnToast1').classList.remove('show');
+      });
+
+      document.querySelector('.id-button').addEventListener('click', (e) => {
+        e.preventDefault();
+        // Here, check if user is signed-in; for demo, always show:
+        document.getElementById('warnOverlay').classList.add('show');
+        document.getElementById('warnToast2').classList.add('show');
+      });
+
+      // Dismiss the popup
+      document.getElementById('warnDismiss2').addEventListener('click', () => {
+        document.getElementById('warnOverlay').classList.remove('show');
+        document.getElementById('warnToast2').classList.remove('show');
+      });
+
+    // visitor count script
+      document.addEventListener("DOMContentLoaded", function () {
+      const countEl = document.getElementById("visitor-count");
+
+      fetch("https://api.countapi.xyz/hit/tupcavite.edu.ph/homepage")
+        .then((res) => res.json())
+        .then((data) => {
+          countEl.textContent = data.value;
+        })
+        .catch((err) => {
+          console.error("Error fetching visitor count:", err);
+          countEl.textContent = "N/A";
+        });
+      });
+
+      // Contact Section Animation
+      document.addEventListener("DOMContentLoaded", function () {
+        const contactSection = document.querySelector('.contact-section');
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              contactSection.classList.add('slide-up');
+              contactSection.classList.remove('slide-down');
+            } else {
+              contactSection.classList.remove('slide-up');
+              contactSection.classList.add('slide-down');
+            }
+          });
+        }, {
+          threshold: 0.1
+        });
+
+        observer.observe(contactSection);
+      });
+      
+
+        // Loading Screen Script
+        document.addEventListener("DOMContentLoaded", () => {
+        let percentage = 80;
+        const loaderWrapper = document.getElementById("loader-wrapper");
+        const progressBar = document.getElementById("progress-bar");
+        const percentageText = document.getElementById("percentage");
+
+
+        const loadingInterval = setInterval(() => {
+          if (percentage < 100) {
+            percentage++;
+            progressBar.style.width = percentage + "%";
+            percentageText.textContent = percentage + "%";
+          } else {
+            clearInterval(loadingInterval);
+            loaderWrapper.style.display = "none";
+          }
+        }, 30);
+      });
+
+      // Facebook SDK Initialization
+      window.fbAsyncInit = function () {
+        FB.init({
+          xfbml: true,
+          version: 'v17.0'
+        });
+      };
+
+      (function (d, s, id) {
+        if (d.getElementById(id)) return;
+        let js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        d.head.appendChild(js);
+      }(document, 'script', 'facebook-jssdk'));
+
+
+      document.getElementById('open-login-modal').addEventListener('click', () => {
+        document.getElementById('login-modal').style.display = 'block';
+      });
+
+
+      const galleryBtn = document.getElementById('galleryBtn');
+      if (galleryBtn) {
+        galleryBtn.onclick = () => {
+          window.location.href = 'gallery-user.html?from=homepage.html';
+        };
+      }
+
+document.getElementById('login-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const userName = document.getElementById('login-username').value.trim();
+  const passWord = document.getElementById('login-password').value.trim();
+  const loginError = document.getElementById('loginError');
+
+  if (!userName || !passWord) {
+    loginError.textContent = '⚠️ Please enter both username and password.';
+    return;
+  }
+
+  try {
+    const res = await fetch('/api/registration/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userName, passWord })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(data.error || 'Login failed');
+
+    // ✅ Redirect based on admin or user
+    if (data.isAdmin) {
+      sessionStorage.setItem('userRole', 'admin');
+      sessionStorage.setItem('userName', userName);
+      window.location.href = 'admin-homepage.html';
+    } else {
+      sessionStorage.setItem('userRole', 'user');
+      sessionStorage.setItem('userName', userName);
+      window.location.href = 'user-homepage.html';
+    }
+
+  } catch (err) {
+    console.error('❌ Login failed:', err);
+    loginError.textContent = '❌ ' + err.message;
+  }
+});
+
+
+  // Close Login Modal when clicking outside
+  window.addEventListener('click', (e) => {
+    const modal = document.getElementById('login-modal');
+    if (e.target === modal) {
+      modal.style.display = 'none';
+      document.getElementById('loginError').textContent = '';
+    }
+  });
+
+  // forgot Modal open/close
+const forgotModal = document.getElementById('forgot-modal');
+document.getElementById('openForgotModal').onclick = () => forgotModal.style.display = 'block';
+document.getElementById('closeForgotModal').onclick = () => forgotModal.style.display = 'none';
+
+let currentUser = '';
+
+// Step 1: Find Email
+document.getElementById('findEmailBtn').onclick = async () => {
+const username = document.getElementById('forgot-username').value.trim();
+const error = document.getElementById('forgot-error');
+const success = document.getElementById('forgot-success');
+error.textContent = '';
+success.textContent = '';
+document.getElementById('emailDisplay').style.display = 'none';
+
+if (!username) return error.textContent = 'Please enter a username or User ID';
+
+try {
+  // First try Alumni
+  const res = await fetch('/api/forgot/find-user', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ userName: username })
+  });
+
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error);
+
+  document.getElementById('emailFound').textContent = `Gmail found (Alumni): ${data.email}`;
+  document.getElementById('emailDisplay').style.display = 'block';
+  currentUser = username;
+  userType = 'alumni';  // ✅ Store user type
+} catch (err1) {
+  // If Alumni fails, try Employer
+  try {
+    const res2 = await fetch('/api/employer/forgot/employer-user', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId: username })   // ✅ Must use "userId"
+    });
+
+    const data2 = await res2.json();
+    if (!res2.ok) throw new Error(data2.error);
+
+    document.getElementById('emailFound').textContent = `Gmail found (Employer): ${data2.email}`;
+    document.getElementById('emailDisplay').style.display = 'block';
+    currentUser = username;
+    userType = 'employer';  // ✅ Store user type
+  } catch (err2) {
+    error.textContent = '❌ ' + err2.message;
+  }
+}
+};
+
+// Step 2: Send OTP
+document.getElementById('sendOtpBtn').onclick = async () => {
+  const error = document.getElementById('forgot-error');
+  const success = document.getElementById('forgot-success');
+  error.textContent = '';
+  success.textContent = '';
+
+  try {
+    const bodyData = userType === 'alumni'
+      ? { userName: currentUser }
+      : { userId: currentUser };
+
+    const res = await fetch('/api/forgot/send-otp', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(bodyData)
+    });
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error);
+
+    success.textContent = 'OTP has been sent to your email!';
+    document.getElementById('otpSection').style.display = 'block';
+  } catch (err) {
+    error.textContent = err.message;
+  }
+};
+
+// Step 3: Verify OTP
+document.getElementById('verifyOtpBtn').onclick = async () => {
+  const otp = document.getElementById('otpInput').value.trim();
+  const error = document.getElementById('forgot-error');
+  const success = document.getElementById('forgot-success');
+  error.textContent = '';
+  success.textContent = '';
+
+  if (!otp) return error.textContent = 'Please enter the OTP';
+
+  try {
+    const bodyData = userType === 'alumni'
+      ? { userName: currentUser, otp }
+      : { userId: currentUser, otp };
+
+    const res = await fetch('/api/forgot/verify-otp', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(bodyData)
+    });
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error);
+
+    success.textContent = 'OTP verified! You can now reset your password.';
+    document.getElementById('resetPasswordSection').style.display = 'block';
+  } catch (err) {
+    error.textContent = err.message;
+  }
+};
+
+// Step 4: Reset Password
+document.getElementById('resetPasswordBtn').onclick = async () => {
+  const newPassword = document.getElementById('newPassword').value.trim();
+  const error = document.getElementById('forgot-error');
+  const success = document.getElementById('forgot-success');
+  error.textContent = '';
+  success.textContent = '';
+
+  if (!newPassword) return error.textContent = 'Please enter a new password';
+
+  try {
+    const bodyData = userType === 'alumni'
+      ? { userName: currentUser, newPassword }
+      : { userId: currentUser, newPassword };
+
+    const res = await fetch('/api/forgot/reset-password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(bodyData)
+    });
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error);
+
+    success.textContent = 'Password reset successfully!';
+    setTimeout(() => forgotModal.style.display = 'none', 2000);
+  } catch (err) {
+    error.textContent = err.message;
+  }
+};
+function showToast(message) {
+  const toast = document.getElementById('toastNotification');
+  toast.textContent = message;
+  toast.classList.add('show');
+
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 3000); // Hide after 3 seconds
+}
+
+
+
+
+
+
+
+
+
+
+
+document.getElementById('login-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const userName = document.getElementById('login-username').value.trim();
+  const passWord = document.getElementById('login-password').value.trim();
+
+  if (!userName || !passWord) {
+    showToast('⚠️ Please enter both username and password.');
+    return;
+  }
+
+  try {
+    const res = await fetch('/api/registration/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userName, passWord })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(data.error || 'Login failed');
+
+    if (data.isAdmin) {
+      sessionStorage.setItem('userRole', 'admin');
+      window.location.href = 'admin-homepage.html';
+    } else {
+      sessionStorage.setItem('userRole', 'user');
+      window.location.href = 'user-homepage.html';
+    }
+
+  } catch (err) {
+    showToast('❌ ' + err.message);
+  }
+});
+
+
+// Open Employer Modal
+document.getElementById('openEmployerModal').addEventListener('click', () => {
+  document.getElementById('employerModal').style.display = 'flex';
+});
+
+// Close Employer Modal
+document.getElementById('closeEmployerModal').addEventListener('click', () => {
+  document.getElementById('employerModal').style.display = 'none';
+});
+
+
+document.getElementById('employerSubmitBtn').addEventListener('click', async () => {
+  const f = document.getElementById('employerRegForm');
+
+  const payload = {
+    employerName: f.employerName.value.trim(),
+    businessName: f.businessName.value.trim(),
+    businessAddress: f.businessAddress.value.trim(),
+    landlineNo: f.landlineNo.value.trim(),
+    mobileNo: f.mobileNo.value.trim(),
+    companyEmail: f.companyEmail.value.trim(),
+    companyWebsite: f.companyWebsite.value.trim(),
+    preferredUserId: f.preferredUserId.value.trim(),
+    preferredPassword: f.preferredPassword.value.trim()
+  };
+
+  if (Object.values(payload).some(val => !val)) {
+    showEmployerToast('⚠️ Please fill in all required fields!', 'error');
+    return;
+  }
+
+  // ✅ Check if preferredUserId ends with ".alumni"
+  if (!payload.preferredUserId.endsWith('.employer')) {
+    showEmployerToast('❗ Preferred User ID must end with ".employer"', 'error');
+    return;
+  }
+
+  try {
+    const res = await fetch('/api/employer/employers', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Registration failed');
+
+    showEmployerToast('✅ Employer registration submitted successfully!', 'success');
+    f.reset();
+    document.getElementById('employerModal').style.display = 'none';
+  } catch (err) {
+    showEmployerToast('❌ ' + err.message, 'error');
+  }
+});
+
+document.getElementById('login-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const userName = document.getElementById('login-username').value.trim();
+  const passWord = document.getElementById('login-password').value.trim();
+  const loginError = document.getElementById('loginError');
+
+  if (!userName || !passWord) {
+    loginError.textContent = '⚠️ Please enter both username and password.';
+    return;
+  }
+
+  try {
+    // ✅ First, try Alumni/Admin login
+    const res = await fetch('/api/registration/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userName, passWord })
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      if (data.isAdmin) {
+        sessionStorage.setItem('userRole', 'admin');
+        sessionStorage.setItem('userName', userName);
+        window.location.href = 'admin-homepage.html';
+      } else {
+        sessionStorage.setItem('userRole', 'user');
+        sessionStorage.setItem('userName', userName);
+        window.location.href = 'user-homepage.html';
+      }
+    } else {
+      throw new Error(data.error || 'Login failed');
+    }
+
+  } catch (err) {
+    // ✅ If Alumni/Admin login fails, try Employer login
+    try {
+      const empRes = await fetch('/api/employer/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: userName, password: passWord })
+      });
+
+      const empData = await empRes.json();
+
+      if (!empRes.ok) throw new Error(empData.error || 'Employer login failed');
+
+      // ✅ Employer login successful
+      sessionStorage.setItem('userRole', 'employer');
+      sessionStorage.setItem('userName', userName);
+      window.location.href = 'employer-page.html';
+
+    } catch (empErr) {
+      console.error('❌ Login failed:', empErr);
+      loginError.textContent = '❌ ' + empErr.message;
+    }
+  }
+});
+
+
+
+function showEmployerToast(message, type = 'success') {
+  const toast = document.getElementById('employer-toast');
+  const toastMsg = document.getElementById('employer-toast-msg');
+  toastMsg.textContent = message;
+
+  toast.className = `employer-toast show ${type}`;
+  setTimeout(() => {
+    toast.className = 'employer-toast';
+  }, 3000);
+}
+
+function showLoginToast(message, type = 'success') {
+  const toast = document.getElementById('login-toast');
+  const toastMsg = document.getElementById('login-toast-message');
+  toastMsg.textContent = message;
+  toast.className = `toast show ${type}`;
+
+  setTimeout(() => {
+    toast.className = 'toast';  // Hide after 3 seconds
+  }, 3000);
+}
+
+
+
+
+
+
+  async function loadIdAnnouncements() {
+    const container = document.getElementById('idAnnouncementList');
+    container.innerHTML = 'Loading...';
+
+    try {
+      const res = await fetch('/api/admin/id-announcements');
+      if (!res.ok) throw new Error('Failed to load ID announcements');
+      const { announcements } = await res.json();
+
+      container.innerHTML = announcements.map(a => `
+        <div class="event-card">
+          <div class="event-header">
+            <span class="badge">ID ANNOUNCEMENT</span>
+            <span class="posted-date">Posted: ${new Date(a.datePosted).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+          </div>
+          <div class="event-title">${a.title}</div>
+          <p>${a.description}</p>
+        </div>
+      `).join('') || '<div>No announcements found.</div>';
+
+    } catch (err) {
+      container.innerHTML = `<div class="error">❌ Failed to load announcements</div>`;
+      console.error(err);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadIdAnnouncements);
+
+async function loadEvents() {
+  const container = document.getElementById('eventList');
+  container.innerHTML = 'Loading...';
+  try {
+    const res = await fetch('/api/events');
+    if (!res.ok) throw new Error('Failed to load events');
+    const { events } = await res.json();
+
+    container.innerHTML = events.map(e => `
+      <div class="event-card">
+        <div class="event-header">
+          <span class="badge">EVENT ANNOUNCEMENT</span>
+          <span class="posted-date">Posted: ${new Date(e.datePosted).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+        </div>
+        <div class="event-title">${e.title}</div>
+      </div>
+    `).join('') || '<div>No announcements found.</div>';
+
+  } catch (err) {
+    container.innerHTML = `<div class="error">❌ Failed to load announcements</div>`;
+    console.error(err);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadEvents);
+
+async function loadCareers() {
+  const listContainer = document.getElementById('careerList');
+  listContainer.innerHTML = 'Loading...';
+  try {
+    const res = await fetch('/api/careers');
+    if (!res.ok) throw new Error('Failed to load careers');
+    const { careers } = await res.json();
+    listContainer.innerHTML = careers.slice(0, 10).map(career => `
+      <div class="career-card">
+        <div class="career-header">
+          <span class="career-badge">CAREER</span>
+          Posted: ${new Date(career.datePosted).toLocaleDateString()}
+        </div>
+        <div class="career-title">${career.title}</div>
+      </div>
+    `).join('') || '<div>No announcements found.</div>';
+  } catch (err) {
+    listContainer.innerHTML = '❌ Failed to load careers';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadCareers);
+  </script>
+</body>
+</head>
+</html>

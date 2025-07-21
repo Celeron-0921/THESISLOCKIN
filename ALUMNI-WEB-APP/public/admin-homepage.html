@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ADMIN PAGE | TUP - Cavite</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500;700&family=Albert+Sans:wght@400;500;700&family=Sanchez&display=swap" rel="stylesheet" />
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <!-- Font Awesome for Social Media Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="admin-homepage.css" />
+</head>
+<body>
+  <div class="adminpage">
+    <img class="Navbar" src="Navbar.png" />
+    <div class="Line1"></div>
+    <div class="Line2"></div>
+
+    <div class="career-button slide-in" onclick="window.location.href='career-posting.html'">
+      <div class="content"><div class="state-layer"><div class="hover-underline1">CAREER</div></div></div>
+    </div>
+        <div class="event-button slide-in" onclick="window.location.href='event-posting.html'">
+      <div class="content"><div class="state-layer"><div class="hover-underline1">EVENT</div></div></div>
+    </div>
+
+    <div class="gallery-button slide-in" id="galleryBtn">
+      <div class="content"><div class="state-layer"><div class="hover-underline1">GALLERY</div></div></div>
+    </div>
+
+    <!-- Modal for gallery -->
+    <div class="gallery-modal" id="galleryModal">
+      <div class="gallery-content">
+        <button id="closeGallery" class="gallery-close">&times;</button>
+        <h2>Gallery Posting "25 Picture per post" </h2>
+
+        <form id="uploadForm" class="upload-form">
+          <label>Select Images:</label>
+          <input type="file" name="images" multiple accept="image/*" required />
+          <button type="submit">Upload Images</button>
+        </form>
+
+        <div class="gallery-grid" id="galleryGrid"></div>
+      </div>
+    </div>
+
+    <button id="signOutBtn" class="sign-out-button slide-in">
+      <div class="content"><div class="state-layer"><div class="hover-underline1">SIGN-OUT</div></div></div>
+    </button>
+
+    <div id="loader-wrapper">
+      <div class="loader-content">
+          <span class="loading-span">T</span>
+          <span class="loading-span2">ECHNOLOGICAL</span>
+          <span class="loading-span">U</span>
+          <span class="loading-span2">NIVERSITY OF THE</span>
+          <span class="loading-span">P</span>
+          <span class="loading-span2">HILIPPINES - </span>
+          <span class="loading-span">C</span>
+          <span class="loading-span2">AVITE</span>
+
+        <div class="progress-container">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="percentage" id="percentage">0%</div>
+        <div class="footer-text">LOADING PLEASE WAIT</div>
+      </div>
+    </div>
+
+
+    <a href="admin-homepage.html">
+      <img class="Logo" src="Logo.png" alt="University Logo" />
+    </a>
+
+    <div class="a-l-u-m-n-i slide-in">
+      <span class="a-l-u-m-n-i-span">A</span>
+      <span class="a-l-u-m-n-i-span2">l u m n i</span>
+      <span class="a-l-u-m-n-i-span">C</span>
+      <span class="a-l-u-m-n-i-span2">o o r d i n a t o r</span>
+    </div>
+
+    <div class="technological-university-of-the-philippines-cavite">
+      TECHNOLOGICAL UNIVERSITY OF THE PHILIPPINES – CAVITE
+    </div>
+
+    <!-- Facebook Page Plugin -->
+    <div class="fb-wrapper">
+      <iframe 
+        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FTUPCAA&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true"
+        width="340" 
+        height="500" 
+        style="border:none; overflow:hidden;" 
+        scrolling="no" 
+        frameborder="0" 
+        allowfullscreen="true" 
+        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+      </iframe>
+    </div>
+
+    <!-- TUPCAVITE Page -->
+    <div class="fb-wrapper2">
+      <iframe 
+        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ftupcavite.edu.ph&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true"
+        width="340" 
+        height="500" 
+        style="border:none; overflow:hidden;" 
+        scrolling="no" 
+        frameborder="0" 
+        allowfullscreen="true" 
+        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+      </iframe>
+    </div>
+
+    <div class="announcement-box">
+      <h3>ID Announcements</h3>
+      <div class="announcement-list" id="idAnnouncementList">
+        Loading...
+      </div>
+    </div>
+
+    <div id="confirmModal" class="confirm-modal hidden">
+      <div class="confirm-box">
+        <p id="confirmMessage">Are you sure?</p>
+        <div class="confirm-actions">
+          <button id="confirmYes">Yes</button>
+          <button id="confirmNo">No</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="announcement-box2">
+      <h3>Events Announcements</h3>
+      <div class="announcement-list" id="eventList">
+        Loading...
+      </div>
+    </div>
+
+    <div class="career-box">
+      <h3>Career Opportunities</h3>
+      <div class="career-list" id="careerList">
+        Loading...
+      </div>
+    </div>
+
+    <!-- Slideshow Section -->
+    <div class="slideshow-container zoom-in">
+      <img class="slideshow-image" src="Grad1.png" alt="Grad 1" />
+      <img class="slideshow-image" src="Grad2.png" alt="Grad 2" />
+      <img class="slideshow-image" src="Grad3.png" alt="Grad 3" />
+      <img class="slideshow-image" src="Grad4.png" alt="Grad 4" />
+      <img class="slideshow-image" src="Grad5.png" alt="Grad 5" />
+      <img class="slideshow-image" src="Grad6.png" alt="Grad 6" />
+      <img class="slideshow-image" src="Grad7.png" alt="Grad 7" />
+      <img class="slideshow-image" src="Grad8.png" alt="Grad 8" />
+    </div>
+
+    <div class="commencement-description zoom-in">
+      <h2 class="school-name">Technological University of the Philippines - Cavite</h2>
+      <h3 class="event-title">40th <span>COMMENCEMENT EXERCISE</span></h3>
+      <p class="description">
+        Here are some snaps from the 40th Commencement Exercise at the Philippine International Convention Center on July 31, 2024.
+        See the magical moments of every TUPCians who reached the end of their college journey.
+        <br><br>
+        <strong>Photos by:</strong> Photo X Media<br>
+        <strong>Words by:</strong> Karen Pet Pabrowada
+      </p>
+    </div>
+  </div>
+
+  <div class="selection-container slide-in">
+    <button type="hover-underline1" class="select-trigger" onclick="toggleDropdown()">DATA MANAGEMENT ▾</button>
+    <div class="dropdown-menu" id="dropdownMenu">
+      <div class="hover-underline1" onclick="navigateTo('alumni-Database.html')">Alumni Database</div>
+      <div class="hover-underline1" onclick="navigateTo('jobs-response.html')">Jobs Response</div>
+      <div class="hover-underline1" onclick="navigateTo('data-registration.html')">Registration</div>
+      <div class="hover-underline1" onclick="navigateTo('admin-id.html')">ID Request</div>
+      <div class="hover-underline1" onclick="navigateTo('event-registration.html')">Event Registration</div>
+      <div class="hover-underline1" onclick="navigateTo('admin-employer.html')">Employer Registration</div>
+    </div>
+  </div>
+
+  <div id="inboxPanel" class="modern-inbox">
+    <div class="inbox-header">Admin Inbox</div>
+    <div id="inboxContentList" class="inbox-list"></div>
+    <div class="inbox-footer">
+      <button id="clearInboxBtn">Clear All</button>
+    </div>
+  </div>
+
+  <div id="notificationToggle" class="admin-notification-wrapper">
+    <i class="fas fa-bell"></i>
+    <span id="inboxBadge" class="notif-badge">0</span>
+  </div>
+
+  <div id="confirmationModal" class="inbox-confirm-modal hidden">
+    <div class="inbox-modal-content">
+      <div class="inbox-modal-header">Confirm Clear All</div>
+      <div class="inbox-modal-body">Are you sure you want to clear all notifications?</div>
+      <div class="inbox-modal-footer">
+        <button id="confirmYesBtn" class="inbox-modal-btn yes">Yes</button>
+        <button id="confirmNoBtn" class="inbox-modal-btn no">No</button>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <!-- Trigger Button -->
+  <div class="id-post-button slide-in" id="idPostBtn">
+    <div class="content"><div class="state-layer"><div class="hover-underline1">ID ANNOUNCEMENT</div></div></div>
+  </div>
+
+  <!-- Modal -->
+  <div id="idPostModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeIDPostModal()">&times;</span>
+      <h2 class="modal-title">Post ID Announcement</h2>
+      <form id="idPostForm" class="modal-form">
+        <label>Title:</label>
+        <input type="text" name="title" required>
+
+        <label>Description:</label>
+        <textarea name="description" rows="4" required></textarea>
+
+        <button type="submit" class="submit-btn">📩 Post Announcement</button>
+      </form>
+      <div id="idPostResult" class="result-message"></div>
+    </div>
+  </div>
+
+
+  <!-- Contact Section -->
+    <div class="contact-section">
+      </a>
+    </div>
+
+  <!-- External JavaScript -->
+  <script src="Homeslideshow.js"></script>
+
+  <script src="/socket.io/socket.io.js"></script>
+
+  <script type="module">
+    import { setupSignOut } from './sign-out.js';
+    setupSignOut('admin');  // 🔒 restrict to admin only
+  </script>   
+
+  <!-- Modal Script -->
+  <script>
+
+      // Contact Section Animation
+      document.addEventListener("DOMContentLoaded", function () {
+        const contactSection = document.querySelector('.contact-section');
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              contactSection.classList.add('slide-up');
+              contactSection.classList.remove('slide-down');
+            } else {
+              contactSection.classList.remove('slide-up');
+              contactSection.classList.add('slide-down');
+            }
+          });
+        }, {
+          threshold: 0.1
+        });
+
+        observer.observe(contactSection);
+      });
+
+        // Loading Screen Script
+        document.addEventListener("DOMContentLoaded", () => {
+        let percentage = 80;
+        const loaderWrapper = document.getElementById("loader-wrapper");
+        const progressBar = document.getElementById("progress-bar");
+        const percentageText = document.getElementById("percentage");
+
+
+        const loadingInterval = setInterval(() => {
+          if (percentage < 100) {
+            percentage++;
+            progressBar.style.width = percentage + "%";
+            percentageText.textContent = percentage + "%";
+          } else {
+            clearInterval(loadingInterval);
+            loaderWrapper.style.display = "none";
+          }
+        }, 30);
+      });
+
+      // Facebook SDK Initialization
+      window.fbAsyncInit = function () {
+        FB.init({
+          xfbml: true,
+          version: 'v17.0'
+        });
+      };
+
+      (function (d, s, id) {
+        if (d.getElementById(id)) return;
+        let js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        d.head.appendChild(js);
+      }(document, 'script', 'facebook-jssdk'));
+
+      function toggleDropdown() {
+        const menu = document.getElementById('dropdownMenu');
+        menu.classList.toggle('show');
+      }
+
+      function navigateTo(url) {
+        window.location.href = url;
+      }
+
+      // Optional: Close dropdown if clicked outside
+      window.addEventListener('click', function(e) {
+        const trigger = document.querySelector('.select-trigger');
+        const menu = document.getElementById('dropdownMenu');
+        if (!trigger.contains(e.target) && !menu.contains(e.target)) {
+          menu.classList.remove('show');
+        }
+      });
+      
+
+  const galleryBtn = document.getElementById('galleryBtn');
+  const galleryModal = document.getElementById('galleryModal');
+  const closeGallery = document.getElementById('closeGallery');
+  const grid = document.getElementById('galleryGrid');
+  const uploadForm = document.getElementById('uploadForm');
+
+  galleryBtn.onclick = () => { galleryModal.style.display = 'flex'; loadGallery(); };
+  closeGallery.onclick = () => galleryModal.style.display = 'none';
+
+  async function loadGallery() {
+    try {
+      const res = await fetch('/api/gallery');
+      if (!res.ok) throw new Error(await res.text());
+      const { items } = await res.json();
+
+      grid.innerHTML = '';
+      items.forEach(it => {
+        const div = document.createElement('div');
+        div.className = 'gallery-item';
+        div.innerHTML = `
+          <img src="${it.image}" alt="Gallery image">
+          <button onclick="deleteImage(${it.id})">🗑️</button>
+          <div class="gallery-date">${new Date(it.datePosted).toLocaleString()}</div>
+        `;
+        grid.appendChild(div);
+      });
+    } catch(err) {
+      alert('Failed to load gallery: ' + err.message);
+    }
+  }
+
+  async function deleteImage(id) {
+    if (!confirm('Delete this image?')) return;
+    const res = await fetch(`/api/gallery/${id}`, { method: 'DELETE' });
+    if (res.ok) loadGallery();
+    else alert('Delete failed');
+  }
+
+  uploadForm.onsubmit = async (e) => {
+    e.preventDefault();
+    const fd = new FormData();
+    const files = uploadForm.elements['images'].files;
+
+    if (!files || files.length === 0) {
+      return alert('Select at least one image.');
+    }
+
+    for (const f of files) {
+      fd.append('images', f); // field must be 'images'
+    }
+
+    const resp = await fetch('/api/gallery/add-multiple', { method: 'POST', body: fd });
+    const json = await resp.json();
+    if (!resp.ok) {
+      return alert('Error: ' + (json.error || resp.status));
+    }
+
+    uploadForm.reset();
+    loadGallery();
+  };
+
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const role = sessionStorage.getItem('userRole');
+    if (role !== 'admin') {
+      window.location.href = 'homepage.html';  // ❌ Only allow admin
+    }
+  });
+
+
+
+
+
+
+async function loadIdAnnouncements() {
+  const container = document.getElementById('idAnnouncementList');
+  container.innerHTML = 'Loading...';
+
+  try {
+    const res = await fetch('/api/admin/id-announcements');
+    if (!res.ok) throw new Error('Failed to load ID announcements');
+    const { announcements } = await res.json();
+
+    container.innerHTML = announcements.map(a => `
+      <div class="event-card" data-id="${a.id}">
+        <div class="event-header">
+          <span class="badge">ID ANNOUNCEMENT</span>
+          <span class="posted-date">Posted: ${new Date(a.datePosted).toLocaleDateString()}</span>
+        </div>
+        <div class="event-title">${a.title}</div>
+        <p>${a.description}</p>
+        <button onclick="deleteAnnouncement(${a.id})" class="delete-btn">🗑️ Delete</button>
+      </div>
+    `).join('') || '<div>No announcements found.</div>';
+
+  } catch (err) {
+    container.innerHTML = `<div class="error">❌ Failed to load announcements</div>`;
+    console.error(err);
+  }
+}
+
+async function deleteAnnouncement(id) {
+  showConfirm('❗ Are you sure you want to delete this announcement?', async () => {
+    try {
+      const res = await fetch(`/api/admin/id-announcement/${id}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error('Failed to delete');
+      
+      document.querySelector(`.event-card[data-id="${id}"]`)?.remove();  // ✅ Remove from DOM directly
+      showToast('✅ Announcement deleted successfully!');
+      
+    } catch (err) {
+      console.error('❌ Delete failed:', err);
+      showToast('❌ Failed to delete announcement.', true);
+    }
+  });
+}
+
+function showConfirm(message, onConfirm) {
+  const modal = document.getElementById('confirmModal');
+  const msg = document.getElementById('confirmMessage');
+  msg.textContent = message;
+  modal.classList.remove('hidden');
+
+  const yesBtn = document.getElementById('confirmYes');
+  const noBtn = document.getElementById('confirmNo');
+
+  yesBtn.onclick = () => {
+    modal.classList.add('hidden');
+    onConfirm();
+  };
+
+  noBtn.onclick = () => {
+    modal.classList.add('hidden');
+  };
+}
+
+document.addEventListener('DOMContentLoaded', loadIdAnnouncements);
+
+
+
+async function loadEvents() {
+  const container = document.getElementById('eventList');
+  container.innerHTML = 'Loading...';
+  try {
+    const res = await fetch('/api/events');
+    if (!res.ok) throw new Error('Failed to load events');
+    const { events } = await res.json();
+
+    container.innerHTML = events.map(e => `
+      <div class="event-card">
+        <div class="event-header">
+          <span class="badge">EVENT ANNOUNCEMENT</span>
+          <span class="posted-date">Posted: ${new Date(e.datePosted).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+        </div>
+        <div class="event-title">${e.title}</div>
+      </div>
+    `).join('') || '<div>No announcements found.</div>';
+
+  } catch (err) {
+    container.innerHTML = `<div class="error">❌ Failed to load announcements</div>`;
+    console.error(err);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadEvents);
+
+async function loadCareers() {
+  const listContainer = document.getElementById('careerList');
+  listContainer.innerHTML = 'Loading...';
+  try {
+    const res = await fetch('/api/careers');
+    if (!res.ok) throw new Error('Failed to load careers');
+    const { careers } = await res.json();
+    listContainer.innerHTML = careers.slice(0, 10).map(career => `
+      <div class="career-card">
+        <div class="career-header">
+          <span class="career-badge">CAREER</span>
+          Posted: ${new Date(career.datePosted).toLocaleDateString()}
+        </div>
+        <div class="career-title">${career.title}</div>
+      </div>
+    `).join('') || '<div>No announcements found.</div>';
+  } catch (err) {
+    listContainer.innerHTML = '❌ Failed to load careers';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadCareers);
+
+
+
+
+
+
+document.getElementById('idPostBtn').onclick = () => {
+  document.getElementById('idPostModal').style.display = 'flex';
+};
+
+function closeIDPostModal() {
+  document.getElementById('idPostModal').style.display = 'none';
+  document.getElementById('idPostForm').reset();
+  document.getElementById('idPostResult').textContent = '';
+}
+
+document.getElementById('idPostForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const formData = new FormData(this);
+  const data = Object.fromEntries(formData.entries());
+  data.submittedAt = new Date().toISOString();
+
+  try {
+    const res = await fetch('/api/admin/id-announcement', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    const result = await res.json();
+    document.getElementById('idPostResult').textContent = res.ok 
+      ? '✅ Announcement Posted!'
+      : `❌ Error: ${result.error || 'Failed to post'}`;
+
+    if (res.ok) setTimeout(closeIDPostModal, 2000);
+  } catch (err) {
+    document.getElementById('idPostResult').textContent = '❌ Error submitting announcement.';
+  }
+});
+
+
+
+
+
+
+
+
+const inboxList = document.getElementById('inboxContentList');
+const inboxBadge = document.getElementById('inboxBadge');
+const bell = document.getElementById('notificationToggle');
+const inboxPanel = document.getElementById('inboxPanel');
+const clearBtn = document.getElementById('clearInboxBtn');
+const confirmationModal = document.getElementById('confirmationModal');
+const confirmYesBtn = document.getElementById('confirmYesBtn');
+const confirmNoBtn = document.getElementById('confirmNoBtn');
+
+
+bell.addEventListener('click', () => {
+  inboxPanel.classList.toggle('show');
+});
+
+function renderNotification(notif) {
+  const item = document.createElement('div');
+  item.className = 'inbox-item';
+  item.innerHTML = `
+    <div class="inbox-item-icon"><i class="fas fa-bell"></i></div>
+    <div class="inbox-item-text clickable">
+      <div class="inbox-item-title">
+        ${notif.name} <span class="inbox-item-time">${new Date(notif.createdAt).toLocaleTimeString()}</span>
+      </div>
+      <div>${notif.message}</div>
+    </div>
+  `;
+
+  // ✅ Click on whole item to delete and redirect
+  item.addEventListener('click', () => {
+    fetch(`/api/notifications/${notif.id}`, { method: 'DELETE' })
+      .then(() => {
+        item.remove();
+        updateBadge();
+        window.location.href = notif.link;
+      })
+      .catch(err => console.error('❌ Failed to delete notification:', err));
+  });
+
+  inboxList.prepend(item);
+  updateBadge();
+}
+
+function updateBadge() {
+  const count = inboxList.querySelectorAll('.inbox-item').length;
+  inboxBadge.textContent = count;
+  inboxBadge.style.display = count > 0 ? 'inline-block' : 'none';
+}
+
+// ✅ Clear All Handler
+clearBtn.addEventListener('click', () => {
+  confirmationModal.classList.remove('hidden');
+});
+
+confirmYesBtn.addEventListener('click', () => {
+  fetch('/api/notifications/clear', { method: 'DELETE' })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        inboxList.innerHTML = '';
+        updateBadge();
+      }
+      confirmationModal.classList.add('hidden');
+    });
+});
+
+confirmNoBtn.addEventListener('click', () => {
+  confirmationModal.classList.add('hidden');
+});
+// ✅ Load on Page Load
+fetch('/api/admin/inbox')
+  .then(res => res.json())
+  .then(data => data.forEach(notif => renderNotification(notif)))
+  .catch(err => console.error('❌ Failed to load inbox:', err));
+
+// ✅ Listen for real-time notifications
+const socket = io();
+socket.on('newNotification', notif => {
+  renderNotification(notif);
+});
+
+  </script>
+</body>
+</head>
+</html>
